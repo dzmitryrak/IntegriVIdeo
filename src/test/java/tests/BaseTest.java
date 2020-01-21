@@ -1,5 +1,7 @@
 package tests;
 
+import driver.DriverFactory;
+import driver.DriverType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -16,7 +18,8 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/webdrivers/chromedriver");
-        driver = new ChromeDriver();
+        driver = DriverFactory.getManager(DriverType.FIREFOX).getDriver();
+
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
